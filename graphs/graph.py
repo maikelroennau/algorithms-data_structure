@@ -31,19 +31,6 @@ class Graph:
         return shortest
 
 
-    def bfs(self, start, end, path=[]):
-        stack = [start]
-
-        while stack:
-            node = stack.pop()
-
-            if not node in path:
-                path = path + [node]
-                stack = self.graph[node]
-
-        return path
-
-
     def show_graph(self):
         for key in self.graph.keys():
             print '{}:'.format(key), ', '.join([element for element in self.graph[key]])
