@@ -6,7 +6,7 @@ if __name__ == '__main__':
     print 'Stack'
     stack = Stack()
     
-    name = 'uannoR leicaM lekiaM'
+    name = 'Maikel Maciel Ronnau'
     [stack.push(x) for x in name]
 
     for x in name:

@@ -31,6 +31,5 @@ class Stack:
 
         return aux
 
-
-    def peek():
+    def peek(self):
         return self.top
