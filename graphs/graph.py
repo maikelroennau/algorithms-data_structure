@@ -22,7 +22,7 @@ class Graph:
         shortest = None
         for node in self.graph[start]:
             if node not in path:
-                newpath =  self.find_path(node, end, path)
+                newpath = self.find_path(node, end, path)
 
                 if newpath:
                     if not shortest or len(newpath) < len(shortest):
