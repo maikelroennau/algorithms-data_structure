@@ -4,14 +4,14 @@ import time
 
 def insertion_sort(vector):
     for i in range(1, len(vector)):
-        k = i
+        j = i
         current_value = vector[i]
 
-        while k > 0 and vector[k-1] > current_value:
-            vector[k] = vector[k-1]
-            k -= 1
+        while j > 0 and vector[j-1] > current_value:
+            vector[j] = vector[j-1]
+            j -= 1
 
-        vector[k] = current_value
+        vector[j] = current_value
 
 
 def bubble_sort(vector):
@@ -40,10 +40,27 @@ def selection_sort(vector):
         vector[smallest] = aux
 
 
+def shell_sort(vector):
+    gap = len(vector) // 2
+
+    while gap > 0:
+        for i in range(gap, len(vector)):
+            j = i
+            current_value = vector[i]
+
+            while j > 0 and vector[j-1] > current_value:
+                vector[j] = vector[j-1]
+                j -= 1
+
+            vector[j] = current_value
+
+        gap //= 2
+
+
 def show_vector(vector):
     print 'Subject vector: \n\t',
     for i in range(len(vector)):
-        if i > 0 and i % 10 == 0:
+        if i > 0 and i % 30 == 0:
             print '\n\t',
         print '{0:0=2d}'.format(vector[i]),
 
@@ -61,6 +78,7 @@ if __name__ == '__main__':
     insertion_vector = unsorted_vector[:]
     bubble_vector = unsorted_vector[:]
     selection_vector = unsorted_vector[:]
+    shell_vector = unsorted_vector[:]
 
     start = time.time()
     insertion_sort(insertion_vector)
@@ -85,4 +103,12 @@ if __name__ == '__main__':
     print '\nSelection sort'
     print '\tElements:', elements
     print '\tSorted sample:', show_sample(selection_vector)
+    print '\tTime....: {} second(s)'.format(round(end - start, 10))
+
+    start = time.time()
+    shell_sort(shell_vector)
+    end = time.time()
+    print '\nShell sort'
+    print '\tElements:', elements
+    print '\tSorted sample:', show_sample(shell_vector)
     print '\tTime....: {} second(s)'.format(round(end - start, 10))
