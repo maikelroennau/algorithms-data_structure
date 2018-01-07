@@ -57,6 +57,41 @@ def shell_sort(vector):
         gap //= 2
 
 
+def merge_sort(vector):
+    if len(vector) > 1:
+        half = len(vector) / 2
+
+        leftside_list = vector[:half]
+        rightside_list = vector[half:]
+
+        merge_sort(leftside_list)
+        merge_sort(rightside_list)
+
+        i = 0
+        j = 0
+        k = 0
+
+        while i < len(leftside_list) and j < len(rightside_list):
+            if leftside_list[i] < rightside_list[j]:
+                vector[k] = leftside_list[i]
+                i += 1
+            else:
+                vector[k] = rightside_list[j]
+                j += 1
+            
+            k += 1
+
+        while i < len(leftside_list):
+            vector[k] = leftside_list[i]
+            i += 1
+            k += 1
+
+        while j < len(rightside_list):
+            vector[k] = rightside_list[j]
+            j += 1
+            k += 1
+
+
 def show_vector(vector):
     print 'Subject vector: \n\t',
     for i in range(len(vector)):
@@ -70,7 +105,7 @@ def show_sample(vector):
 
 
 if __name__ == '__main__':
-    elements = 100
+    elements = 1000
     unsorted_vector = [randint(0, 100) for x in range(elements)]
 
     show_vector(unsorted_vector)
@@ -79,6 +114,7 @@ if __name__ == '__main__':
     bubble_vector = unsorted_vector[:]
     selection_vector = unsorted_vector[:]
     shell_vector = unsorted_vector[:]
+    merge_vector = unsorted_vector[:]
 
     start = time.time()
     insertion_sort(insertion_vector)
@@ -111,4 +147,12 @@ if __name__ == '__main__':
     print '\nShell sort'
     print '\tElements:', elements
     print '\tSorted sample:', show_sample(shell_vector)
+    print '\tTime....: {} second(s)'.format(round(end - start, 10))
+
+    start = time.time()
+    merge_sort(merge_vector)
+    end = time.time()
+    print '\nShell sort'
+    print '\tElements:', elements
+    print '\tSorted sample:', show_sample(merge_vector)
     print '\tTime....: {} second(s)'.format(round(end - start, 10))
