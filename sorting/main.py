@@ -92,6 +92,34 @@ def merge_sort(vector):
             k += 1
 
 
+def heap_sort(vector):
+    def shift(start, count):
+        root = start
+
+        while root * 2 + 1 < count:
+            child = root * 2 - 1
+            if child < count and vector[child] < vector[child+1]:
+                child += 1
+
+            if vector[child] < vector[child]:
+                vector[root], vector[child] = vector[child], vector[root]
+                root = child
+            else:
+                return
+    
+    count = len(vector)
+    start = count / 2 - 1
+    end = count - 1
+
+    while start >= 0:
+        shift(start, count)
+        start -= 1
+
+    while end > 0:
+        vector[end], vector[0] = vector[0], vector[end]
+        end -= 1
+
+
 def show_vector(vector):
     print 'Subject vector: \n\t',
     for i in range(len(vector)):
@@ -115,6 +143,7 @@ if __name__ == '__main__':
     selection_vector = unsorted_vector[:]
     shell_vector = unsorted_vector[:]
     merge_vector = unsorted_vector[:]
+    heap_vector = unsorted_vector[:]
 
     start = time.time()
     insertion_sort(insertion_vector)
@@ -155,4 +184,12 @@ if __name__ == '__main__':
     print '\nMerge sort'
     print '\tElements:', elements
     print '\tSorted sample:', show_sample(merge_vector)
+    print '\tTime....: {} second(s)'.format(round(end - start, 10))
+
+    start = time.time()
+    heap_sort(heap_vector)
+    end = time.time()
+    print '\nHeap sort'
+    print '\tElements:', elements
+    print '\tSorted sample:', show_sample(heap_vector)
     print '\tTime....: {} second(s)'.format(round(end - start, 10))
