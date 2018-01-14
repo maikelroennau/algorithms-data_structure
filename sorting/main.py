@@ -152,7 +152,7 @@ if __name__ == '__main__':
     start = time.time()
     merge_sort(merge_vector)
     end = time.time()
-    print '\nShell sort'
+    print '\nMerge sort'
     print '\tElements:', elements
     print '\tSorted sample:', show_sample(merge_vector)
     print '\tTime....: {} second(s)'.format(round(end - start, 10))
